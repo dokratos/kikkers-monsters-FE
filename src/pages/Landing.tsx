@@ -6,12 +6,10 @@ import { useNavigate } from "react-router-dom";
 const Landing = () => {
   const [query, setQuery] = useState('');
   const [amount, setAmount] = useState<number>(0);
+  // const [isLoading, setIsLoading] = useState<boolean>(false);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  // const result = async () => { 
-  //   const cards = await axios.get("http://localhost:8080/images", { params: {query: "butterfly"} });
-  //   setImages(cards.data);
-  // }
+
   const playMemory = (e : React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     dispatch(fetchImages({query, amount}));
@@ -19,7 +17,7 @@ const Landing = () => {
   }
 
   return (
-    <main>
+    <main className='landing'>
       <p>Hello! Wanna play?</p>
       <form
       onSubmit={playMemory}
