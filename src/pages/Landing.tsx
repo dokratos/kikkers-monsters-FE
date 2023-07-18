@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useAppDispatch } from '../reduxHooks';
 import { fetchImages } from '../slices/memorySlice';
-import { redirect, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Landing = () => {
   const [query, setQuery] = useState('');

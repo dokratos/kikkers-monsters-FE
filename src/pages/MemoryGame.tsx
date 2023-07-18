@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react'
-import { useAppSelector, useAppDispatch } from '../reduxHooks';
+// import React, { useState, useEffect } from 'react'
+import { useAppSelector } from '../reduxHooks';
 import { selectImages } from '../slices/memorySlice';
 
 
 const MemoryGame = () => {
-  const [score, setScore] = useState(0);
+  // const [score, setScore] = useState(0);
   const images: string[] = useAppSelector(selectImages);
 
   return (

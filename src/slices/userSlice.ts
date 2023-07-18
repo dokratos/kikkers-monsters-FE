@@ -1,5 +1,5 @@
-import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
-import type { RootState } from '../store';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+// import type { RootState } from '../store';
 import axios from 'axios';
 import IPlayer from '../types/playersType';
 
@@ -14,7 +14,7 @@ const initialState: IState = {
 }
 
 export const fetchPlayers = createAsyncThunk('player/fetchPlayers', async () => {
-  const response = await axios.get("http://localhost:8080/users");
+  const response = await axios.get("https://kikkersandmonstersb.azurewebsites.net/users");
   return response.data;
 })
 

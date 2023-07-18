@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import type { RootState } from '../store';
 import axios from 'axios';
 
@@ -14,7 +14,7 @@ const initialState: IState = {
 
 export const fetchImages = createAsyncThunk('memory/fetchImages', async (params: {query: string, amount: number}) => {
   console.log(params)
-  const response: string[] = (await axios.get("http://localhost:8080/images", { params })).data;
+  const response: string[] = (await axios.get("https://kikkersandmonstersb.azurewebsites.net/images", { params })).data;
   return response;
 })
 
