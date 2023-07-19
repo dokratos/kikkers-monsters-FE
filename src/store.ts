@@ -12,6 +12,7 @@ import {
 import storage from 'redux-persist/lib/storage'
 import userReducer from './slices/userSlice';
 import memoryReducer from './slices/memorySlice';
+import scoreReducer from './slices/scoreSlice';
 
 const persistConfig = {
   key: 'root',
@@ -22,6 +23,7 @@ const persistedMemory = persistReducer(persistConfig, memoryReducer);
 
 export const store = configureStore({
   reducer: {
+    score: scoreReducer,
     players: userReducer,
     memory: persistedMemory
   },

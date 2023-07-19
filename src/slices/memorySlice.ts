@@ -14,8 +14,8 @@ const initialState: IState = {
 // "https://kikkersandmonstersb.azurewebsites.net/images"
 // http://localhost:8080/images
 export const fetchImages = createAsyncThunk('memory/fetchImages', async (params: {query: string, amount: number}) => {
-  const response: string[] = (await axios.get("http://localhost:8080/images", { params })).data;
-  return response;
+    const response = await axios.get("http://localhost:8080/images", { params });
+    return response.data;
 })
 
 export const memorySlice = createSlice({
@@ -34,6 +34,10 @@ export const memorySlice = createSlice({
       .addCase(fetchImages.fulfilled, (state, action) => {
         state.status = 'playing';
         state.cards = action.payload
+      })
+      .addCase(fetchImages.rejected, state => {
+        state.status = 'rejected';
+        state.cards = [];
       })
   }
 })

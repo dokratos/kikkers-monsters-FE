@@ -13,15 +13,24 @@ const initialState: IState = {
   status: 'idle'
 }
 
-export const fetchPlayers = createAsyncThunk('player/fetchPlayers', async () => {
-  const response = await axios.get("https://kikkersandmonstersb.azurewebsites.net/users");
+// "https://kikkersandmonstersb.azurewebsites.net/users"
+export const fetchPlayers = createAsyncThunk('players/fetchPlayers', async () => {
+  const response = await axios.get("http://localhost:8080/users");
+  console.log(response.data);
   return response.data;
+})
+
+export const postPlayer = createAsyncThunk<IPlayer, {name: string, score: number}>('players/postPlayer', async ({name, score}) => {
+  const response = await axios.post("http://localhost:8080/users", { name, score });
+  return (await response.data as IPlayer);
 })
 
 export const userSlice = createSlice({
   name: 'players',
   initialState,
-  reducers: {},
+  reducers: {
+
+  },
   extraReducers(builder) {
     builder
       .addCase

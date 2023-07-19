@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAppSelector } from "../reduxHooks";
+import { useAppSelector, useAppDispatch } from "../reduxHooks";
 import { selectImages } from "../slices/memorySlice";
+import { setFinalScore } from '../slices/scoreSlice';
 import "./memory.css";
-import Spinner from '../components/Spinner';
 
 const MemoryGame = () => {
   const [firstUrl, setFirstUrl] = useState<string | null>('');
@@ -11,7 +11,8 @@ const MemoryGame = () => {
   const [firstCard, setFirstCard] = useState<HTMLElement | null>();
   const [secondCard, setSecondCard] = useState<HTMLElement | null>();
   const [loading, setLoading] = useState<string>('');
-  const status = useAppSelector(state => state.memory.status)
+  const dispatch = useAppDispatch();
+  // const status = useAppSelector(state => state.memory.status)
   const [score, setScore] = useState(0);
   const images: string[] = useAppSelector(selectImages);
   const navigate = useNavigate();
@@ -71,6 +72,7 @@ const MemoryGame = () => {
   }
 
   if (score === images.length) {
+    dispatch(setFinalScore(score))
     setTimeout(() => {
       return navigate('/win')
     })
@@ -80,7 +82,6 @@ const MemoryGame = () => {
     <main>
       <h3>SCORE: {score}</h3>
       <section className="memory-board">
-        {status === 'loading' && <Spinner />}
         {images?.map((img, i) => {
           return (
             <div
