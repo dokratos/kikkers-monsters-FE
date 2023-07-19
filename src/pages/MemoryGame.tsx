@@ -4,6 +4,7 @@ import { useAppSelector, useAppDispatch } from "../reduxHooks";
 import { selectImages } from "../slices/memorySlice";
 import { setFinalScore } from '../slices/scoreSlice';
 import "./memory.css";
+import Header from '../components/Header'
 
 const MemoryGame = () => {
   const [firstUrl, setFirstUrl] = useState<string | null>('');
@@ -79,7 +80,9 @@ const MemoryGame = () => {
   }
 
   return (
-    <main>
+    <>
+    <Header />
+    <main className='main-memory'>
       <h3>SCORE: {score}</h3>
       <section className="memory-board">
         {images?.map((img, i) => {
@@ -104,6 +107,7 @@ const MemoryGame = () => {
         })}
       </section>
     </main>
+    </>
   );
 };
 

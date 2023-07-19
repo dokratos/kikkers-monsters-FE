@@ -1,0 +1,18 @@
+header {
+  grid-column: 1 / 3;
+  grid-row: 1 / 2;
+  /* color: #FFF; */
+  background-color: rgb(7, 129, 68);
+  padding: 1.5rem;
+  display: grid;
+  grid-template-columns: [first] 90% 1rem [end];
+}
+
+.title {
+  padding: 0 2rem;
+}
+
+.link {
+  grid-column-start: end;
+  text-decoration: none;
+}

@@ -16,19 +16,21 @@ const postNew = async (e: React.FormEvent<HTMLFormElement>) => {
 }
 
 return (
-  <main>
-      <h2>you win!</h2>
-      <p>your score is: {score}</p>
+  <main className='win-land'>
+    <section className='win-section'>
+      <h1>You win! and your score is: {score}</h1>
       <form
+      className='winner'
       onSubmit={postNew}
       >
-        <label>your name is: </label>
         <input
         type='text'
+        placeholder='your name is: ...'
         onChange={e => setPlayerName(e.target.value)}
         ></input>
         <button>Save your game</button>
       </form>
+      </section>
     </main>
   )
 }

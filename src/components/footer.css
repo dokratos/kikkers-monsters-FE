@@ -1,4 +1,8 @@
 footer {
   /* position: absolute; */
-  bottom: 0;
+  /* bottom: 0; */
+  grid-column: 2 / 3;
+  grid-row: -1;
+  padding: 20px; 
+  color: rgb(52, 52, 52);
 }
