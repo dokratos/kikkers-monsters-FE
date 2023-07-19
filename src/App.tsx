@@ -8,6 +8,7 @@ import Landing from './pages/Landing'
 import Footer from './components/Footer'
 import Header from './components/Header'
 import MemoryGame from './pages/MemoryGame'
+import Winning from './pages/Winning'
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path='/memory' element={<MemoryGame />} />
+        <Route path='/win' element={<Winning />} />
       </Routes>
       <Footer />
     </>

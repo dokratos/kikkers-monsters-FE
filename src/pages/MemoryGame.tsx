@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { useAppSelector } from "../reduxHooks";
 import { selectImages } from "../slices/memorySlice";
 import "./memory.css";
@@ -11,9 +12,9 @@ const MemoryGame = () => {
   const [secondCard, setSecondCard] = useState<HTMLElement | null>();
   const [loading, setLoading] = useState<string>('');
   const status = useAppSelector(state => state.memory.status)
-
-  // const [score, setScore] = useState(0);
+  const [score, setScore] = useState(0);
   const images: string[] = useAppSelector(selectImages);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (firstUrl !== '' && secondUrl !== '') {
@@ -49,8 +50,9 @@ const MemoryGame = () => {
     setTimeout(() => {
       firstCard?.classList.add('removed');
       secondCard?.classList.add('removed');
+      setScore(score + 2);
       resetBoard();
-    }, 1000);
+    }, 800);
   }
   
   const unflipCards = () => {
@@ -58,7 +60,7 @@ const MemoryGame = () => {
       firstCard?.classList.remove('flipped');
       secondCard?.classList.remove('flipped');
       resetBoard();
-    }, 1000);
+    }, 800);
   }
 
   const resetBoard = () => {
@@ -68,31 +70,39 @@ const MemoryGame = () => {
     setFirstCard(null);
   }
 
+  if (score === images.length) {
+    setTimeout(() => {
+      return navigate('/win')
+    })
+  }
 
   return (
-    <section className="memory-board">
-      {status === 'loading' && <Spinner />}
-      {images?.map((img, i) => {
-        return (
-          <div
-          className="flip-box"
-          onClick={e => flip(e)}
-          key={i}>
-            <div 
-            className="flip-box-inner"
-            >
-              <div className="flip-box-front">
-                <img
-                  src={img}
-                  className="memory-card"
-                />
+    <main>
+      <h3>SCORE: {score}</h3>
+      <section className="memory-board">
+        {status === 'loading' && <Spinner />}
+        {images?.map((img, i) => {
+          return (
+            <div
+            className="flip-box"
+            onClick={e => flip(e)}
+            key={i}>
+              <div 
+              className="flip-box-inner"
+              >
+                <div className="flip-box-front">
+                  <img
+                    src={img}
+                    className="memory-card"
+                  />
+                </div>
+                <div className="flip-box-back"></div>
               </div>
-              <div className="flip-box-back"></div>
-            </div>
-         </div>
-        );
-      })}
-    </section>
+          </div>
+          );
+        })}
+      </section>
+    </main>
   );
 };
 

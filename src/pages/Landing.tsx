@@ -5,12 +5,12 @@ import { useNavigate } from "react-router-dom";
 
 const Landing = () => {
   const [query, setQuery] = useState('');
-  const [amount, setAmount] = useState<number>(0);
-  // const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [amount, setAmount] = useState<number>(5);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-
+  
   const playMemory = (e : React.FormEvent<HTMLFormElement>) => {
+    localStorage.removeItem('persist:root')
     e.preventDefault();
     dispatch(fetchImages({query, amount}));
     navigate('/memory');
@@ -24,8 +24,9 @@ const Landing = () => {
       >
         <input
         type='text'
-        // value={query}
-        onChange={e => setQuery(e.target.value)}></input>
+        onChange={e => setQuery(e.target.value)}
+        required
+        ></input>
         <input
         type='number'
         min="5"

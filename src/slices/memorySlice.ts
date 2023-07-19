@@ -11,9 +11,10 @@ const initialState: IState = {
   cards: [],
   status: 'idle'
 }
-// http://localhost:8080
+// "https://kikkersandmonstersb.azurewebsites.net/images"
+// http://localhost:8080/images
 export const fetchImages = createAsyncThunk('memory/fetchImages', async (params: {query: string, amount: number}) => {
-  const response: string[] = (await axios.get("https://kikkersandmonstersb.azurewebsites.net/images", { params })).data;
+  const response: string[] = (await axios.get("http://localhost:8080/images", { params })).data;
   return response;
 })
 
@@ -21,9 +22,9 @@ export const memorySlice = createSlice({
   name: 'memoryGame',
   initialState,
   reducers: {
-    // removePair: (state, action) => {
-
-    // }
+    clearPair: (state, action) => {
+      state.cards = state.cards.filter(card => card !== action.payload)
+    }
   },
   extraReducers(builder) {
     builder
@@ -32,11 +33,11 @@ export const memorySlice = createSlice({
       })
       .addCase(fetchImages.fulfilled, (state, action) => {
         state.status = 'playing';
-        state.cards = state.cards.concat(action.payload)
+        state.cards = action.payload
       })
   }
 })
 
-
+export const { clearPair } = memorySlice.actions
 export const selectImages = (state: RootState) => state.memory.cards;
 export default memorySlice.reducer
