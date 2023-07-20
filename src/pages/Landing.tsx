@@ -5,7 +5,6 @@ import { fetchImages } from "../slices/memorySlice";
 import { fetchPlayers } from '../slices/userSlice';
 import { saveTheme } from '../slices/gameSlice';
 import { useNavigate } from "react-router-dom";
-import Spinner from "../components/Spinner";
 import './landing.css'
 
 const Landing = () => {
@@ -13,7 +12,6 @@ const Landing = () => {
   const [amount, setAmount] = useState<number>(5);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const status = useAppSelector((state) => state.memory.status);
   const players = useAppSelector(state => state.players.players);
 
   useEffect(() => {
@@ -28,12 +26,11 @@ const Landing = () => {
     localStorage.removeItem('persist:root');
     dispatch(saveTheme(query))
     dispatch(fetchImages({ query, amount }));
-    if (status === 'playing') navigate("/memory");
+    navigate("/memory");
   };
 
   return (
     <main className="landing">
-      {status === "loading" && <Spinner />}
       {/* {status === 'rejected' && <p>Oops.. we couldn't get enough cards for you, try something else!</p>} */}
       <article className='memory-choose'>
         <form className="memory-game-form" onSubmit={playMemory}>

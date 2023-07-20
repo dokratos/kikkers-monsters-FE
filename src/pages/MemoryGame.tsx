@@ -3,6 +3,7 @@ import { useAppSelector, useAppDispatch } from "../redux/reduxHooks";
 import { selectImages } from "../slices/memorySlice";
 import { setFinalScore } from '../slices/scoreSlice';
 import VictoryForm from '../components/VictoryForm';
+import Spinner from "../components/Spinner";
 import "./memory.css";
 // import Header from '../components/Header'
 
@@ -16,6 +17,8 @@ const MemoryGame = () => {
   const dispatch = useAppDispatch();
   const [score, setScore] = useState(0);
   const images: string[] = useAppSelector(selectImages);
+  const cardStatus = useAppSelector((state) => state.memory.status);
+
 
   useEffect(() => {
     if (firstUrl !== '' && secondUrl !== '') {
@@ -84,6 +87,7 @@ const MemoryGame = () => {
     {/* <Header /> */}
     <main className='main-memory'>
       <h3>SCORE_ {score}</h3>
+      {cardStatus === "loading" && <Spinner />}
       {/* <button>menu</button> */}
       <section className="memory-board">
         {win && <VictoryForm />}
