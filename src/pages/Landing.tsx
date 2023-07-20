@@ -1,6 +1,9 @@
-import React, { useState } from "react";
-import { useAppDispatch, useAppSelector } from "../reduxHooks";
+import React, { useState, useEffect } from "react";
+import { persistor } from "../redux/store";
+import { useAppDispatch, useAppSelector } from "../redux/reduxHooks";
 import { fetchImages } from "../slices/memorySlice";
+import { fetchPlayers } from '../slices/userSlice';
+import { saveTheme } from '../slices/gameSlice';
 import { useNavigate } from "react-router-dom";
 import Spinner from "../components/Spinner";
 import './landing.css'
@@ -11,13 +14,21 @@ const Landing = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const status = useAppSelector((state) => state.memory.status);
+  const players = useAppSelector(state => state.players.players);
 
-  const playMemory = (e: React.FormEvent<HTMLFormElement>) => {
-    localStorage.removeItem("persist:root");
+  useEffect(() => {
+    if (players.length <= 1) {
+      dispatch(fetchPlayers())
+    }
+  }, []);
+  
+  const playMemory = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    persistor.purge();
+    localStorage.removeItem('persist:root');
+    dispatch(saveTheme(query))
     dispatch(fetchImages({ query, amount }));
-    // if (status === 'playing')
-    navigate("/memory");
+    if (status === 'playing') navigate("/memory");
   };
 
   return (
@@ -25,7 +36,6 @@ const Landing = () => {
       {status === "loading" && <Spinner />}
       {/* {status === 'rejected' && <p>Oops.. we couldn't get enough cards for you, try something else!</p>} */}
       <article className='memory-choose'>
-        <p>Hello! Wanna play ?</p>
         <form className="memory-game-form" onSubmit={playMemory}>
           <input
             type="text"
@@ -43,7 +53,8 @@ const Landing = () => {
       </article>
       <article className='intro'>
         <h1>Welcome to Kikkers&Monsters!</h1>
-        <p>Since you are here, we believe you want to enjoy our magnificent game. Choose and start!</p>
+        <p>Since you are here, we believe you want to enjoy our awesome memory game. 
+          Choose a theme and the amount of cards you want to play with and ...start!</p>
       </article>
     </main>
   );

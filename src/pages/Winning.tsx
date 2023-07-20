@@ -1,37 +1,34 @@
-import { useState } from 'react'
-import { useAppSelector, useAppDispatch } from '../reduxHooks';
-import { postPlayer } from '../slices/userSlice';
-
+import { useEffect } from 'react';
+import { useAppSelector, useAppDispatch } from '../redux/reduxHooks';
+import { fetchPlayers } from '../slices/userSlice';
 import './winning.css';
+import { Link } from 'react-router-dom';
 
 const Winning = () => {
-const score = useAppSelector(state => state.score.score);
 const dispatch = useAppDispatch();
-const [playerName, setPlayerName] = useState<string>('');
+const message = useAppSelector(state => state.game.message);
+const players = useAppSelector(state => state.players.players);
+const playerStatus = useAppSelector(state => state.players.status);
 
-const postNew = async (e: React.FormEvent<HTMLFormElement>) => {
-  e.preventDefault();
-  const name = playerName
-  dispatch(postPlayer({name, score}));
-}
+useEffect(() => {
+  if (playerStatus === 'posted') dispatch(fetchPlayers);
+}, []);
 
 return (
   <main className='win-land'>
-    <section className='win-section'>
-      <h1>You win! and your score is: {score}</h1>
-      <form
-      className='winner'
-      onSubmit={postNew}
-      >
-        <input
-        type='text'
-        placeholder='your name is: ...'
-        onChange={e => setPlayerName(e.target.value)}
-        ></input>
-        <button>Save your game</button>
-      </form>
-      </section>
-    </main>
+    <article>
+      <h2>{message}</h2>
+    </article>
+    <article>
+      {players.map((player, i) => {
+        return (<div key={i}>
+          <p>{player.userName}</p>
+          <p>{player.score}</p>
+        </div>)
+      })}
+    </article>
+    <Link to='/'>Play Again!</Link>
+  </main>
   )
 }
 

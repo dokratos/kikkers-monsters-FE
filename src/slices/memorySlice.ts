@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import type { RootState } from '../store';
+import type { RootState } from '../redux/store';
+import { PURGE } from "redux-persist";
 import axios from 'axios';
 
 interface IState {
@@ -14,18 +15,14 @@ const initialState: IState = {
 // "https://kikkersandmonstersb.azurewebsites.net/images"
 // http://localhost:8080/images
 export const fetchImages = createAsyncThunk('memory/fetchImages', async (params: {query: string, amount: number}) => {
-    const response = await axios.get("http://localhost:8080/images", { params });
+    const response = await axios.get("https://kikkersandmonstersb.azurewebsites.net/images", { params });
     return response.data;
 })
 
 export const memorySlice = createSlice({
   name: 'memoryGame',
   initialState,
-  reducers: {
-    clearPair: (state, action) => {
-      state.cards = state.cards.filter(card => card !== action.payload)
-    }
-  },
+  reducers: {},
   extraReducers(builder) {
     builder
       .addCase(fetchImages.pending, (state) => {
@@ -39,9 +36,11 @@ export const memorySlice = createSlice({
         state.status = 'rejected';
         state.cards = [];
       })
+      .addCase(PURGE, () => {
+        return initialState;
+      })
   }
 })
 
-export const { clearPair } = memorySlice.actions
 export const selectImages = (state: RootState) => state.memory.cards;
 export default memorySlice.reducer

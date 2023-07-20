@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { useAppSelector, useAppDispatch } from "../reduxHooks";
+import { useAppSelector, useAppDispatch } from "../redux/reduxHooks";
 import { selectImages } from "../slices/memorySlice";
 import { setFinalScore } from '../slices/scoreSlice';
+import VictoryForm from '../components/VictoryForm';
 import "./memory.css";
-import Header from '../components/Header'
+// import Header from '../components/Header'
 
 const MemoryGame = () => {
   const [firstUrl, setFirstUrl] = useState<string | null>('');
@@ -12,11 +12,10 @@ const MemoryGame = () => {
   const [firstCard, setFirstCard] = useState<HTMLElement | null>();
   const [secondCard, setSecondCard] = useState<HTMLElement | null>();
   const [loading, setLoading] = useState<string>('');
+  const [win, setWin] = useState<boolean>(false);
   const dispatch = useAppDispatch();
-  // const status = useAppSelector(state => state.memory.status)
   const [score, setScore] = useState(0);
   const images: string[] = useAppSelector(selectImages);
-  const navigate = useNavigate();
 
   useEffect(() => {
     if (firstUrl !== '' && secondUrl !== '') {
@@ -26,6 +25,7 @@ const MemoryGame = () => {
 
   const flip = (event: React.MouseEvent<HTMLDivElement>) => {
     if (loading === 'loading') return;
+    if (event.currentTarget.className === 'flip-box flipped') return;
     setLoading('loading');
     event.currentTarget.classList.add('flipped');
     if (firstUrl === '') {
@@ -72,19 +72,21 @@ const MemoryGame = () => {
     setFirstCard(null);
   }
 
-  if (score === images.length) {
+  if (score === images.length && images.length > 0) {
     dispatch(setFinalScore(score))
     setTimeout(() => {
-      return navigate('/win')
-    })
+      setWin(true);
+    }, 800)
   }
 
   return (
     <>
-    <Header />
+    {/* <Header /> */}
     <main className='main-memory'>
-      <h3>SCORE: {score}</h3>
+      <h3>SCORE_ {score}</h3>
+      {/* <button>menu</button> */}
       <section className="memory-board">
+        {win && <VictoryForm />}
         {images?.map((img, i) => {
           return (
             <div

@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { PURGE } from "redux-persist";
 
 interface IState {
   score: number,
@@ -16,11 +17,14 @@ export const scoreSlice = createSlice({
   reducers: {
     setFinalScore: (state, action) => {
       state.score = action.payload
+      state.status = 'complete'
     }
   },
   extraReducers(builder) {
     builder
-      .addCase
+    .addCase(PURGE, () => {
+      return initialState;
+    })
   }
 })
 

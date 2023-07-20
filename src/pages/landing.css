@@ -4,21 +4,23 @@
   background-position: top;
   position: relative;
   background-image: linear-gradient(to right bottom, 
-    rgba(126, 213, 111, 0.8), 
-    rgba(40, 180, 133, 0.8)), 
+    rgba(126, 213, 111, 0.4), 
+    rgba(40, 180, 133, 0.4)), 
     url(../assets/images/lookingFrog.jpg);
   padding: 5rem 3rem;
   display: grid;
   grid-template-columns: 1fr 3rem 1fr;
+  grid-template-rows: 6rem 1fr 1fr;
 }
 
 @media only screen and (min-width: 600px) {
   .landing {
     display: grid;
     grid-template-columns: 1fr 20% 1fr;
+    grid-template-rows: 15% 1fr 1fr;
   }
   .memory-choose, .intro {
-    margin-top: 4rem;
+    grid-row-start: 2;
   }
 }
 

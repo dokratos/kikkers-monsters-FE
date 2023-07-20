@@ -1,5 +1,5 @@
 export default interface IPlayer{
   id: number,
-  name: string,
+  userName: string,
   score: number,
 }
