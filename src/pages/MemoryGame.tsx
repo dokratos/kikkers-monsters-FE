@@ -4,6 +4,7 @@ import { selectImages } from "../slices/memorySlice";
 import { setFinalScore } from '../slices/scoreSlice';
 import VictoryForm from '../components/VictoryForm';
 import Spinner from "../components/Spinner";
+import NoGame from '../components/NoGame';
 import "./memory.css";
 // import Header from '../components/Header'
 
@@ -18,7 +19,6 @@ const MemoryGame = () => {
   const [score, setScore] = useState(0);
   const images: string[] = useAppSelector(selectImages);
   const cardStatus = useAppSelector((state) => state.memory.status);
-
 
   useEffect(() => {
     if (firstUrl !== '' && secondUrl !== '') {
@@ -90,8 +90,10 @@ const MemoryGame = () => {
       {cardStatus === "loading" && <Spinner />}
       {/* <button>menu</button> */}
       <section className="memory-board">
+        {(cardStatus === 'playing' || cardStatus === 'rejected') 
+          && images.length < 8 && <NoGame />}
         {win && <VictoryForm />}
-        {images?.map((img, i) => {
+        {images.length > 8 && images?.map((img, i) => {
           return (
             <div
             className="flip-box"

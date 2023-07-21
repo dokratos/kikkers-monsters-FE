@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useAppSelector, useAppDispatch } from '../redux/reduxHooks';
 import { postPlayer } from '../slices/userSlice';
 import { getMessage } from '../slices/gameSlice';
@@ -51,6 +51,7 @@ const VictoryForm = () => {
           className='winner-button'
           >Save your game</button>
         </form>
+        {playerStatus === 'posted' && <Link to='/win'>Get Congrats!</Link>}
         </section>
     )
 }

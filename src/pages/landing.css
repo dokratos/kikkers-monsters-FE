@@ -26,40 +26,15 @@
 
 .memory-choose {
   grid-column-start: 1 / 3;
+  margin: 3rem 6rem;
 }
 
 .intro {
   grid-column-start: 3 ;
+  margin: 3rem 8rem; 
 }
 
 .memory-game-form {
   display: flex;
   flex-direction: column;
-}
-
-button, input {
-  margin-bottom: 0.5rem;
-  border-radius: 0.5rem;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover, input:hover {
-  border-color: #07673f;
-}
-button:focus,
-button:focus-visible,
-input:focus,
-input:focus-visible
-
-{
-  outline: 2px solid green;
-}
-
-button {
-  background-color: #f9f9f9;
 }

@@ -5,18 +5,33 @@
   background-position: top;
   position: relative;
   background-image: linear-gradient(to right bottom, 
-    rgba(126, 213, 111, 0.5), 
-    rgba(40, 180, 133, 0.5)), 
-    url(../assets/images/cornerFrog.jpg);
+    rgba(126, 213, 111, 0.3), 
+    rgba(40, 180, 133, 0.4)), 
+    url(../assets/images/leavesOnBlack.jpg);
   padding: 5rem 3rem;
+  display: grid;
+  grid-template-rows: 16% 1fr 1fr;
 }
 
 .memory-board {
   display: grid;
   justify-content: center;
-  grid-gap: 1rem;
-  grid-template-columns: repeat(5, 9rem);
-  grid-template-rows: repeat(2, calc(9rem / 2 * 3));
+  grid-row-start: 2;
+  grid-gap: 1.5rem;
+  grid-template-columns: repeat(6, 15rem);
+  grid-template-rows: repeat(2, calc(12rem / 2 * 3));
+}
+
+@media only screen and (max-width: 600px) {
+  .memory-board {
+    grid-gap: 1.5rem;
+    grid-template-columns: repeat(5, 9rem);
+    grid-template-rows: repeat(2, calc(9rem / 2 * 3));
+  }
+  .flip-box {
+    height: calc(140px / 2 * 3);
+    width: 150px;
+  }
 }
 
 .memory-card {
@@ -24,15 +39,15 @@
   height: 100%;
   border-radius: 0.8rem;
   color: black;
-  background-color: #bbb;
+  background-color: #676666;
 }
 
 .flip-box {
-  height: calc(140px / 2 * 3);
-  width: 140px;
+  height: calc(200px / 2 * 3);
+  width: 220px;
   border-radius: 0.8rem;
   background-color: transparent;
-  border: 1px solid #e2e1e1;
+  border: 1px solid #898989;
   perspective: 1000px;
 }
 
@@ -69,7 +84,7 @@
 }
 
 .flip-box-back {
-  background-image: url(../assets/svg/card.svg);
+  background-image: url(../assets/images/yellow.jpg);
   background-position: center center;
   background-size: cover;
   border-radius: 0.8rem;

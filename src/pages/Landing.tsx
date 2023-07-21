@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { persistor } from "../redux/store";
+import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../redux/reduxHooks";
 import { fetchImages } from "../slices/memorySlice";
 import { fetchPlayers } from '../slices/userSlice';
 import { saveTheme } from '../slices/gameSlice';
-import { useNavigate } from "react-router-dom";
 import './landing.css'
 
 const Landing = () => {
@@ -31,7 +31,6 @@ const Landing = () => {
 
   return (
     <main className="landing">
-      {/* {status === 'rejected' && <p>Oops.. we couldn't get enough cards for you, try something else!</p>} */}
       <article className='memory-choose'>
         <form className="memory-game-form" onSubmit={playMemory}>
           <input
@@ -43,6 +42,7 @@ const Landing = () => {
           <input
             type="number"
             min="5"
+            max="25"
             onChange={(e) => setAmount(Number(e.target.value))}
           ></input>
           <button>Play!</button>
@@ -51,7 +51,8 @@ const Landing = () => {
       <article className='intro'>
         <h1>Welcome to Kikkers&Monsters!</h1>
         <p>Since you are here, we believe you want to enjoy our awesome memory game. 
-          Choose a theme and the amount of cards you want to play with and ...start!</p>
+          Choose a theme and the amount of cards you want to play with: between 5 and 25. 
+          And ...start!</p>
       </article>
     </main>
   );

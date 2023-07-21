@@ -10,11 +10,24 @@
   padding: 5rem 3rem;
   display: grid;
   grid-template-columns: 1fr 7rem 1fr;
+  grid-template-rows: 20% 1fr ;
+}
+
+.gpt-message {
+  grid-row-start: 2;
+  padding:  0 3rem;
+}
+
+.play {
+  grid-column-start: -1;
+  text-decoration: none;
+  color: beige;
 }
 
 @media only screen and (min-width: 600px) {
   .win-land {
     grid-template-columns: 1fr 20% 1fr;
+    font-size: x-large;
   }
 }
 
