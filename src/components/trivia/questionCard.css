@@ -1,0 +1,4 @@
+.trivia-question.answered {
+  pointer-events: none;
+  color: #f72a2a;
+}

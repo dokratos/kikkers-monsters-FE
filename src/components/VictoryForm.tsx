@@ -9,6 +9,7 @@ import './victoryForm.css'
 const VictoryForm = () => {
   const score = useAppSelector(state => state.score.score);
   const theme = useAppSelector(state => state.game.theme);
+  const game = useAppSelector(state => state.game.game);
   const gameStatus = useAppSelector(state => state.game.status);
   const playerStatus = useAppSelector(state => state.players.status);
   const dispatch = useAppDispatch();
@@ -17,7 +18,7 @@ const VictoryForm = () => {
 
   useEffect(() => {
     if (gameStatus === 'idle') {
-      dispatch(getMessage({theme}))
+      dispatch(getMessage({theme, game}))
     }
   }, [])
   

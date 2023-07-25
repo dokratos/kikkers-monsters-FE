@@ -16,10 +16,12 @@ const initialState: IState = {
   status: 'idle'
 }
 // "http://localhost:8080/chat"
-export const getMessage = createAsyncThunk('message/fetchChat', async (params: { theme: string }) => {
+export const getMessage = createAsyncThunk('message/fetchChat', async (params: { theme: string, game: string }) => {
   const response = await axios.get("https://kikkersandmonstersb.azurewebsites.net/chat", { params });
   return response.data;
 })
+
+
 
 export const gameSlice = createSlice({
   name: 'game',
@@ -30,6 +32,9 @@ export const gameSlice = createSlice({
     },
     saveMessage: (state, action) => {
       state.message = action.payload;
+    },
+    saveGame: (state, action) => {
+      state.game = action.payload
     }
   },
   extraReducers(builder) {
@@ -51,5 +56,5 @@ export const gameSlice = createSlice({
   }
 })
 
-export const { saveTheme, saveMessage } = gameSlice.actions
+export const { saveTheme, saveMessage, saveGame } = gameSlice.actions
 export default gameSlice.reducer

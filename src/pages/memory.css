@@ -18,11 +18,11 @@
   justify-content: center;
   grid-row-start: 2;
   grid-gap: 1.5rem;
-  grid-template-columns: repeat(6, 15rem);
-  grid-template-rows: repeat(2, calc(12rem / 2 * 3));
+  grid-template-columns: repeat(5, 11rem);
+  grid-template-rows: repeat(2, calc(9rem / 2 * 3));
 }
 
-@media only screen and (max-width: 600px) {
+/* @media only screen and (max-width: 600px) {
   .memory-board {
     grid-gap: 1.5rem;
     grid-template-columns: repeat(5, 9rem);
@@ -32,7 +32,7 @@
     height: calc(140px / 2 * 3);
     width: 150px;
   }
-}
+} */
 
 .memory-card {
   width: 100%;
@@ -43,8 +43,8 @@
 }
 
 .flip-box {
-  height: calc(200px / 2 * 3);
-  width: 220px;
+  height: calc(150px / 2 * 3);
+  width: 160px;
   border-radius: 0.8rem;
   background-color: transparent;
   border: 1px solid #898989;

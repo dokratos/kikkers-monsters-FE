@@ -27,7 +27,7 @@ main {
   background-color: #FFF;
 }
 
-button, input {
+button, input, select {
   margin-bottom: 0.5rem;
   border-radius: 0.5rem;
   border: 1px solid transparent;

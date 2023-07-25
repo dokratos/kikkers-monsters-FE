@@ -1,0 +1,14 @@
+.trivia-page {
+  height: 100vh;
+  background-size: cover;
+  background-position: top;
+  position: relative;
+  background-image: linear-gradient(to right bottom, 
+    rgba(126, 213, 111, 0.4), 
+    rgba(40, 180, 133, 0.4)), 
+    url(../assets/images/cornerFrog.jpg);
+  padding: 5rem 3rem;
+  /* display: grid;
+  grid-template-columns: 1fr 15% 1fr;
+  grid-template-rows: 6rem 1fr 1fr; */
+}

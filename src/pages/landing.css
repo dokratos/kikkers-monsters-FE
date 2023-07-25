@@ -9,32 +9,20 @@
     url(../assets/images/lookingFrog.jpg);
   padding: 5rem 3rem;
   display: grid;
-  grid-template-columns: 1fr 3rem 1fr;
+  grid-template-columns: 1fr 15% 1fr;
   grid-template-rows: 6rem 1fr 1fr;
 }
 
 @media only screen and (min-width: 600px) {
   .landing {
     display: grid;
-    grid-template-columns: 1fr 20% 1fr;
+    /* grid-template-columns: 1fr 25% 1fr; */
     grid-template-rows: 15% 1fr 1fr;
   }
-  .memory-choose, .intro {
-    grid-row-start: 2;
-  }
-}
-
-.memory-choose {
-  grid-column-start: 1 / 3;
-  margin: 3rem 6rem;
 }
 
 .intro {
   grid-column-start: 3 ;
-  margin: 3rem 8rem; 
+  margin: 3rem 6rem; 
 }
 
-.memory-game-form {
-  display: flex;
-  flex-direction: column;
-}

@@ -14,6 +14,7 @@ import userReducer from '../slices/userSlice';
 import memoryReducer from '../slices/memorySlice';
 import scoreReducer from '../slices/scoreSlice';
 import gameReducer from '../slices/gameSlice';
+import triviaReducer from '../slices/triviaSlice';
 
 const persistConfig = {
   key: 'root',
@@ -24,7 +25,8 @@ const rootReducer = combineReducers({
   game: gameReducer,
   score: scoreReducer,
   players: userReducer,
-  memory: memoryReducer
+  memory: memoryReducer,
+  trivia: triviaReducer
 })
 
 const persistedMemory = persistReducer(persistConfig, rootReducer);

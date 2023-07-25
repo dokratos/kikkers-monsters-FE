@@ -27,7 +27,7 @@
 @media only screen and (min-width: 600px) {
   .win-land {
     grid-template-columns: 1fr 20% 1fr;
-    font-size: x-large;
+    font-size: large;
   }
 }
 
