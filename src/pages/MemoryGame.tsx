@@ -6,7 +6,6 @@ import VictoryForm from '../components/VictoryForm';
 import Spinner from "../components/Spinner";
 import NoGame from '../components/NoGame';
 import "./memory.css";
-// import Header from '../components/Header'
 
 const MemoryGame = () => {
   const [firstUrl, setFirstUrl] = useState<string | null>('');
@@ -84,11 +83,9 @@ const MemoryGame = () => {
 
   return (
     <>
-    {/* <Header /> */}
     <main className='main-memory'>
       <h3>SCORE_ {score}</h3>
       {cardStatus === "loading" && <Spinner />}
-      {/* <button>menu</button> */}
       <section className="memory-board">
         {(cardStatus === 'playing' || cardStatus === 'rejected') 
           && images.length < 8 && <NoGame />}

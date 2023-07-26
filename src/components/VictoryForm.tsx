@@ -52,7 +52,10 @@ const VictoryForm = () => {
           className='winner-button'
           >Save your game</button>
         </form>
-        {playerStatus === 'posted' && <Link to='/win'>Get Congrats!</Link>}
+        {playerStatus === 'posted' && 
+          <Link 
+          className='congrats'
+          to='/win'>Get Congrats!</Link>}
         </section>
     )
 }

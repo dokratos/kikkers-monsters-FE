@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 // import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../redux/reduxHooks";
 import { fetchPlayers } from '../slices/userSlice';
@@ -8,7 +8,8 @@ import './landing.css'
 
 const Landing = () => {
   const dispatch = useAppDispatch();
-  // const navigate = useNavigate();
+  const [showMemory, setShowMemory] = useState<boolean>(false);
+  const [showTrivia, setShowTrivia] = useState<boolean>(false);
   const players = useAppSelector(state => state.players.players);
 
   useEffect(() => {
@@ -19,13 +20,19 @@ const Landing = () => {
 
   return (
     <main className="landing">
-      <MemoryForm />
-      <TriviaForm />
+      <div className='accordion-box'>
+        <button 
+        className='accordion'
+        onClick={() => setShowMemory(!showMemory)}>Memory Card</button>
+        {showMemory && <MemoryForm />}
+        <button 
+        className='accordion'
+        onClick={() => setShowTrivia(!showTrivia)}>Trivia</button>
+        {showTrivia && <TriviaForm />}
+      </div>
       <article className='intro'>
         <h1>Welcome to Kikkers&Monsters!</h1>
-        <p>Since you are here, we believe you want to enjoy our awesome memory game. 
-          Choose a theme and the amount of cards you want to play with: between 5 and 25. 
-          And ...start!</p>
+        <p>Since you are here, we believe you want to enjoy one of our awesome games. Pick the one you prefer and ...start!</p>
       </article>
     </main>
   );

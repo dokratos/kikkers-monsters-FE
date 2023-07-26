@@ -10,19 +10,42 @@
   padding: 5rem 3rem;
   display: grid;
   grid-template-columns: 1fr 15% 1fr;
-  grid-template-rows: 6rem 1fr 1fr;
+  grid-template-rows: 15% 1fr 1fr;
 }
 
-@media only screen and (min-width: 600px) {
+@media only screen and (max-width: 600px) {
   .landing {
-    display: grid;
-    /* grid-template-columns: 1fr 25% 1fr; */
-    grid-template-rows: 15% 1fr 1fr;
+    width: 100%;
   }
 }
 
-.intro {
-  grid-column-start: 3 ;
-  margin: 3rem 6rem; 
+.accordion-box {
+  grid-column-start: 1 / 3;
+  grid-row-start: 2;
+  margin: 2rem 3rem;
+  display: flex;
+  flex-direction: column;
 }
 
+.intro {
+  grid-column-start: 3;
+  grid-row-start: 2;
+  margin: 0 6rem; 
+}
+
+.accordion {
+  border-radius: 0;
+  background-color: rgba(229, 252, 245, 0.8);
+}
+
+.accordion:focus {
+  border: none;
+  outline: 0px;
+}
+
+.accordion:hover, .accordion:focus-visible {
+  background-color: rgba(18, 118, 89, 0.8);
+  border: none;
+  outline: 0px;
+  color: rgba(229, 252, 245);
+}

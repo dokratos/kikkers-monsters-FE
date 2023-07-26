@@ -11,33 +11,32 @@ interface QCardProps {
 
 const QCard = ({question, answers, correct}: QCardProps) => {
   const dispatch = useAppDispatch();
-  const [answer, setAnswer] = useState<string | null>('')
-  const shuffled = answers.sort(() => Math.random() - 0.5);
-  useEffect(() => {   
-    if (correct === answer) {
-      console.log(answer, 'answer')
-      dispatch(increment());
-    }
-  }, [answer])
   
-  const check = (e: React.MouseEvent<HTMLParagraphElement>) => {
-    setAnswer(e.currentTarget.innerText);
-    console.log(correct, 'correct')
-    e.currentTarget.parentElement?.classList.add('answered')
+  const check = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.currentTarget.parentElement?.classList.add('answered');
+    if (correct === e.currentTarget.innerText) {
+      dispatch(increment());
+      e.currentTarget.classList.add('green')
+    } else {
+      e.currentTarget.classList.add('red')
+    }
   }
 
   return (
     <article className='trivia-question'>
-      <h3>{question}</h3>
-      {shuffled.map((answer, k) => {
+      <h2 className='trivia-title'>{question}</h2>
+      <div className='answer-container'>
+      {answers.map((answer, k) => {
         return (
-          <p 
+          <button
+          className='trivia-answer'
           onClick={e => check(e)}
-          key={k}>{answer}</p>
+          key={k}>{answer}</button>
         )
       })}
+      </div>
     </article>
   )
 }
 
-export default QCard
+export default QCard;

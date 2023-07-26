@@ -12,3 +12,8 @@
 .winner-input, .winner-button {
   margin: 0.4rem 0;
 }
+
+.congrats {
+    text-decoration: none;
+    color: beige;
+}

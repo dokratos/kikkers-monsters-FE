@@ -1,12 +1,11 @@
 .main-memory {
   height: 100vh;
-  /* color: rgb(65, 64, 64); */
   background-size: cover;
   background-position: top;
   position: relative;
   background-image: linear-gradient(to right bottom, 
     rgba(126, 213, 111, 0.3), 
-    rgba(40, 180, 133, 0.4)), 
+    rgba(40, 180, 133, 0.7)), 
     url(../assets/images/leavesOnBlack.jpg);
   padding: 5rem 3rem;
   display: grid;
@@ -21,18 +20,6 @@
   grid-template-columns: repeat(5, 11rem);
   grid-template-rows: repeat(2, calc(9rem / 2 * 3));
 }
-
-/* @media only screen and (max-width: 600px) {
-  .memory-board {
-    grid-gap: 1.5rem;
-    grid-template-columns: repeat(5, 9rem);
-    grid-template-rows: repeat(2, calc(9rem / 2 * 3));
-  }
-  .flip-box {
-    height: calc(140px / 2 * 3);
-    width: 150px;
-  }
-} */
 
 .memory-card {
   width: 100%;

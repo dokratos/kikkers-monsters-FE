@@ -23,8 +23,9 @@ const TriviaForm = () => {
   }
   
   return (
-  <article className='trivia-'>
+  <article className='trivia-start'>
     <form className="trivia-form" onSubmit={playTrivia}>
+      <p className='game-description'>Choose the amount of questions, the theme and the difficulty</p>
       <input
         type="number"
         min="3"
@@ -34,6 +35,10 @@ const TriviaForm = () => {
       <select onChange={(e) => setCategory(e.target.value)}>
         <option value={'9'}>General Knowledge</option>
         <option value={'10'}>Books</option>
+        <option value={'11'}>Films</option>
+        <option value={'12'}>Music</option>
+        <option value={'27'}>Animals</option>
+        <option value={'18'}>Computers</option>
         <option value={'17'}>Science & Nature</option>
         <option value={'20'}>Mythology</option>
         <option value={'22'}>Geography</option>

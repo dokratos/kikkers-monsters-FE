@@ -8,7 +8,24 @@
     rgba(40, 180, 133, 0.4)), 
     url(../assets/images/cornerFrog.jpg);
   padding: 5rem 3rem;
-  /* display: grid;
-  grid-template-columns: 1fr 15% 1fr;
-  grid-template-rows: 6rem 1fr 1fr; */
+  display: grid;
+  grid-template-rows: 16% 1fr 1fr;
+  grid-template-columns: 15% 1fr 15%;
+}
+
+.trivia-box {
+  grid-column: 2;
+  grid-row: 2 /-1;
+  overflow: hidden;
+}
+
+.trivia-carousel {
+  display: flex;
+  flex-direction: row;
+  overflow-x: scroll;
+  white-space: nowrap; 
+  width: 100%;
+  overscroll-behavior: contain;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
 }

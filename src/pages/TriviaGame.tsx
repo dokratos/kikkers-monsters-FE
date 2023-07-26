@@ -24,22 +24,33 @@ const TriviaGame = () => {
 
   return (
     <main className='trivia-page'>
-      <h1>TriviaGame</h1>
+
       {triviaStatus === 'loading' && <Spinner />}
       <h3>SCORE_ {score}</h3>
-      {questions?.map((question, key) => {
-        return (
-          <QCard
-          question={question.question}
-          key={key}
-          correct={question.correct_answer}
-          answers={question.incorrect_answers.concat(question.correct_answer)}
-          /> 
-          )
-        })
-      }
-      <button onClick={handleResult}>Check Result</button>
-      {endGame && <VictoryForm />}
+      <section className='trivia-box'>
+        {!endGame && <div className='trivia-carousel'>
+          {questions?.map((question, key) => {
+            return (
+              <QCard
+              question={question.question}
+              key={key}
+              correct={question.correct_answer}
+              answers={question.incorrect_answers
+                .concat(question.correct_answer)
+                .sort(() => Math.random() - 0.5)}
+                /> 
+                )
+              })
+            }
+          {triviaStatus === 'playing' && <button 
+          className='check-button'
+          onClick={handleResult}>Check Result</button>}
+          {/* <a className="prev" >&#10094;</a>
+          <a className="next" >&#10095;</a> */}
+  {/* onClick={"plusSlides(-1)"} onClick={"plusSlides(1)"} */}
+        </div>}
+          {endGame && <VictoryForm />}
+      </section>
     </main>
   )
 }

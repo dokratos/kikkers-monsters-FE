@@ -23,8 +23,9 @@ const MemoryForm = () => {
   };
 
   return (
-    <article className='memory-choose'>
+    <article className='memory-choose' id='memory'>
         <form className="memory-game-form" onSubmit={playMemory}>
+          <p className='game-description'> Choose a theme and the amount of cards you want to play with: between 5 and 25. </p>
           <input
             type="text"
             placeholder='Choose a theme...'
