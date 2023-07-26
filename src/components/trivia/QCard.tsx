@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import { useAppDispatch } from '../../redux/reduxHooks';
 import { increment } from '../../slices/scoreSlice';
 import './questionCard.css'
