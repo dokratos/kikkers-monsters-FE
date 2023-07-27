@@ -46,6 +46,11 @@ export const gameSlice = createSlice({
       state.status = 'won';
       state.message = action.payload;
     })
+    .addCase(getMessage.rejected, (state) => {
+      state.status = 'rejected';
+      state.message = `Oops! Looks like our chatty friend is sleeping.. 
+      but you get my congrats, you're awesome!`
+    })
     .addCase(PURGE, () => {
       return initialState;
     })

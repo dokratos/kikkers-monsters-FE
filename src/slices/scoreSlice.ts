@@ -18,9 +18,6 @@ export const scoreSlice = createSlice({
     setFinalScore: (state, action) => {
       state.score = action.payload
       state.status = 'complete'
-    },
-    increment: (state) => {
-      state.score += 1
     }
   },
   extraReducers(builder) {
@@ -31,5 +28,5 @@ export const scoreSlice = createSlice({
   }
 })
 
-export const { setFinalScore, increment } = scoreSlice.actions
+export const { setFinalScore } = scoreSlice.actions
 export default scoreSlice.reducer

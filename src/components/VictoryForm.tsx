@@ -6,7 +6,11 @@ import { getMessage } from '../slices/gameSlice';
 import Spinner from './Spinner';
 import './victoryForm.css'
 
-const VictoryForm = () => {
+interface VictoryFormProps {
+  newStyle: string
+}
+
+const VictoryForm = ({newStyle}: VictoryFormProps) => {
   const score = useAppSelector(state => state.score.score);
   const theme = useAppSelector(state => state.game.theme);
   const game = useAppSelector(state => state.game.game);
@@ -34,10 +38,17 @@ const VictoryForm = () => {
     dispatch(postPlayer({name, score}));
   }
 
+  let message: string;
+  if (game === 'memory card') {
+    message = `You win! and your score is: ${score}`;
+  } else {
+    message = `You got your chances and your final score is ${score}`;
+  }
+
   return (
-      <section className='win-section'>
-        {playerStatus === 'posting' && <Spinner />}
-        <h1>You win! and your score is: {score}</h1>
+      <section className={newStyle}>
+        {playerStatus === 'posting' && <Spinner newStyle='trivia-spinner'/>}
+        <h1>{message}</h1>
         <form
         className='winner'
         onSubmit={postNew}
@@ -46,6 +57,7 @@ const VictoryForm = () => {
           className='winner-input'
           type='text'
           placeholder='your name is: ...'
+          required
           onChange={e => setPlayerName(e.target.value)}
         ></input>
           <button

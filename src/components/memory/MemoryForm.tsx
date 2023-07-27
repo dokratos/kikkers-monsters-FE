@@ -29,7 +29,7 @@ const MemoryForm = () => {
           <input
             type="text"
             placeholder='Choose a theme...'
-            onChange={(e) => setQuery(e.target.value)}
+            onChange={(e) => setQuery(e.target.value.replace(/ /g,''))}
             required
           ></input>
           <input

@@ -1,8 +1,12 @@
 import './spinner.css'
 
-const Spinner = () => {
+interface SprinnerProps {
+  newStyle: string
+}
+
+const Spinner = ({newStyle}: SprinnerProps) => {
   return (
-      <div className='loading-spinner'></div>
+      <div className={`loading-spinner ${newStyle}`}></div>
   )
 }
 

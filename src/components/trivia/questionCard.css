@@ -1,7 +1,5 @@
 .trivia-question {
-  margin: 0 4rem;
-  text-align: center;
-  min-width: 95%;
+  padding: 0 2rem;
   text-align: center;
 }
 
@@ -16,6 +14,7 @@
 
 .trivia-answer {
   margin: 1rem 2rem;
+  max-width: 100%;
 }
 
 .trivia-answer:focus {

@@ -85,11 +85,11 @@ const MemoryGame = () => {
     <>
     <main className='main-memory'>
       <h3>SCORE_ {score}</h3>
-      {cardStatus === "loading" && <Spinner />}
       <section className="memory-board">
+        {cardStatus === "loading" && <Spinner newStyle='memory-spinner'/>}
         {(cardStatus === 'playing' || cardStatus === 'rejected') 
           && images.length < 8 && <NoGame />}
-        {win && <VictoryForm />}
+        {win && <VictoryForm newStyle='win-section'/>}
         {images.length > 8 && images?.map((img, i) => {
           return (
             <div

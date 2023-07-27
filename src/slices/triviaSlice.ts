@@ -13,12 +13,13 @@ const initialState: IState = {
   questions: [],
   status: 'idle'
 }
+
 // "https://kikkersandmonstersb.azurewebsites.net/trivia"
 // http://localhost:8080/trivia
 export const fetchQuestions = createAsyncThunk('trivia/fetchQuestions', async (params: {amount: string, category: string, difficulty: string}) => {
     const response = await axios.get("https://kikkersandmonstersb.azurewebsites.net/trivia", { params });
-    console.log(response.data.result);
-    return response.data.result;
+    console.log(response.data)
+    return response.data;
 })
 
 export const triviaSlice = createSlice({
