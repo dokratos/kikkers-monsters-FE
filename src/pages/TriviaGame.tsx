@@ -29,17 +29,17 @@ const TriviaGame = () => {
       e.currentTarget.classList.add('red');
     }
   }
-
+  console.log(triviaStatus)
   const handleResult = () => {
     dispatch(saveTheme(questions[0]?.category));
     dispatch(setFinalScore(score));
     setEndGame(true);
   };
-
+ 
   useEffect(() => {
-    slides[0]?.classList.add("slideShow");
-    setCorrect(questions[0]?.correct_answer);
-  }, []);
+      slides[0]?.classList.add("slideShow");
+      setCorrect(questions[0]?.correct_answer);
+  }, [triviaStatus]);
 
   const plusSlides = (n: number) => {
     if (slideIndex < questions.length - 1) {
